@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+*.env
+
+# VSCode settings
+.vscode/
+
+# Mac & Windows system files
+.DS_Store
+Thumbs.db
+
+# Flask cache
+instance/
+*.db
+
+# Python logs
+*.log
+
+# Media uploads (optional - अगर यूजर upload करता है तो)
+uploads/

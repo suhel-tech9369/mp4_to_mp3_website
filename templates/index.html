@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free MP4 to MP3 Converter - Convert videos to high-quality MP3 files instantly. 100% free and easy to use.">
+  <meta name="keywords" content="MP4 to MP3, video to audio, free converter, online converter">
+  <meta name="author" content="Mohammad Suhel">
+  <meta property="og:title" content="Free MP4 to MP3 Converter">
+  <meta property="og:description" content="Convert your MP4 videos to MP3 audio easily and free.">
+  <meta property="og:image" content="/static/converter.jpeg">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="/static/converter.jpeg" type="image/jpeg">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>Free MP4 to MP3 Converter</title>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ✅ Logo Image -->
+        <div style="text-align:center;">
+            <img src="/static/converter.jpeg" alt="Logo" style="max-width:120px; margin-bottom:15px;">
+        </div>
+
+        <h1>🎵 MP4 to MP3 Converter</h1>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data">
+            <label class="file-label">
+                Select MP4 file:
+                <input type="file" name="video" id="videoInput" accept=".mp4" required>
+            </label>
+            <div id="previewInfo" style="display:none;">
+                <p><strong>File:</strong> <span id="fileName"></span></p>
+            </div>
+
+            <label><br>
+                <input type="checkbox" id="agree" required>
+                I agree to the <a href="/terms" target="_blank">Terms & Conditions</a>
+                <p>© 2025 Mohammad Suhel. All rights reserved.</p>
+            </label>
+
+            <button type="submit">🎶 Convert to MP3</button>
+        </form>
+
+        <div id="processing" style="display:none;">
+            <p>⏳ Processing... Please wait.</p>
+        </div><br>
+        <p>📧 Email me at: <a href="mailto:gyanibaba046@gmail.com">gyanibaba046@gmail.com</a></p>
+    </div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const processingDiv = document.getElementById('processing');
+        const previewInfo = document.getElementById('previewInfo');
+        const fileName = document.getElementById('fileName');
+        const videoInput = document.getElementById('videoInput');
+
+        videoInput.addEventListener('change', function () {
+            if (this.files.length > 0) {
+                fileName.textContent = this.files[0].name;
+                previewInfo.style.display = 'block';
+            } else {
+                previewInfo.style.display = 'none';
+            }
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            processingDiv.style.display = 'block';
+
+            const formData = new FormData(form);
+
+            fetch('/convert', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                processingDiv.style.display = 'none';
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = "converted.mp3";
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(() => {
+                alert('Something went wrong.');
+                processingDiv.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+/* Reset some default styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #2c3e50, #3498db);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container styling */
+.container {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+/* Heading */
+.container h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* File input styling */
+input[type="file"] {
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #fff;
+  color: #333;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+}
+
+/* Upload button */
+button {
+  margin-top: 20px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #2ecc71;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 500px) {
+  .container {
+    padding: 20px;
+  }
+  .container h1 {
+    font-size: 24px;
+  }
+}

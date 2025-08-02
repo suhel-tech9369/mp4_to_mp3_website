@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, redirect, url_for, send_from_directory
 from moviepy.editor import VideoFileClip
 import os
 import uuid
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def index():
@@ -40,6 +41,12 @@ def convert():
 @app.route('/terms')
 def terms():
     return render_template('terms.html')
+
+from flask import send_from_directory
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml')
 
 if __name__ == '__main__':
     app.run(debug=True)
